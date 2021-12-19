@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 )
 
@@ -9,7 +10,7 @@ func main() {
 	fmt.Println("")
 
 	ejercicioA()
-	ejercicioB(8, 5, 10, 5)
+	ejercicioB(-8, -5, 10, 5)
 	ejercicioC(3000, "C")
 	ejercicioD()
 	ejercicioE()
@@ -18,10 +19,10 @@ func main() {
 
 func ejercicioD() {
 
-	maxFunc := tipoDeOperacion("maximo")
+	maxFunc, err := tipoDeOperacion(minimo)
 	valorMax := maxFunc(5, 3, 6, 7, 10)
 
-	fmt.Println(valorMax)
+	fmt.Println(valorMax, err)
 }
 
 func ejercicioA() (impuesto int) {
@@ -48,16 +49,18 @@ func ejercicioA() (impuesto int) {
 
 }
 
-func ejercicioB(notas ...int) (promedio int) {
+func ejercicioB(notas ...int) (int, error) {
 
 	var notasTotal int
+	var promedio int
 
 	for _, nota := range notas {
 
 		if nota < 0 {
-			//errors.New("Hay un numero negativo")
 
-			return
+			fmt.Println("Hay un numero negativo")
+
+			return 0, errors.New("Hay un numero negativo")
 		}
 
 		notasTotal = notasTotal + nota
@@ -67,7 +70,7 @@ func ejercicioB(notas ...int) (promedio int) {
 	}
 	fmt.Println("El promedio del alumno es", promedio)
 
-	return promedio
+	return promedio, nil
 }
 
 func ejercicioC(min int, categoria string) (salario int) {
@@ -102,10 +105,6 @@ func ejercicioC(min int, categoria string) (salario int) {
 	}
 	return
 }
-
-// func ejercicioE() {
-
-// }
 
 const (
 	minimo   = "minimo"
@@ -157,46 +156,46 @@ func prom(calificaciones ...int) (calificacion int) {
 	return
 }
 
-func tipoDeOperacion(operador string) func(calificaciones ...int) (calificacion int) {
+func tipoDeOperacion(operador string) (func(calificaciones ...int) (calificacion int), error) {
 
 	switch operador {
 
 	case "minimo":
-		return min
+		return min, nil
 	case "maximo":
-		return max
+		return max, nil
 	case "promedio":
-		return prom
+		return prom, nil
+	default:
+		return nil, errors.New("No existe ese calculo")
+		//si le paso nil rompe al correr el error
 	}
-
-	return nil
 }
 
 func ejercicioE() {
 
-	funcAnimal := tipoDeAlimento(perro)
+	funcAnimal, err := tipoDeAlimento("elefante")
 	cantidadDeAlimento := funcAnimal(6)
 
-	fmt.Println(cantidadDeAlimento)
+	fmt.Println(cantidadDeAlimento, err)
 
 }
 
-func tipoDeAlimento(operador string) func(animales int) (alimentoKg int) {
+func tipoDeAlimento(operador string) (func(animales int) (alimentoKg int), error) {
 
 	switch operador {
 	case "perro":
-		return perroFunc
+		return perroFunc, nil
 	case "gato":
-		return gatoFunc
+		return gatoFunc, nil
 	case "hamster":
-		return hamsterFunc
+		return hamsterFunc, nil
 	case "tarantula":
-		return tarantulaFunc
-
+		return tarantulaFunc, nil
+	default:
+		return nil, errors.New("\nNo existe el animal")
+		//si pongo nil en el lugar de la función rompe al correr el error
 	}
-
-	return nil
-
 }
 
 const (
@@ -227,8 +226,6 @@ func gatoFunc(animales int) (alimentoKg int) {
 func hamsterFunc(animales int) (alimentoKg int) {
 
 	alimentoKg = animales * 250
-
-	//pasarlo a kg
 
 	fmt.Println("Se necesitan para el hamster", alimentoKg, "gramos")
 

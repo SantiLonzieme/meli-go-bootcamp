@@ -31,7 +31,6 @@ func ejercicioB() {
 
 	fmt.Printf("El precio final es %.2f\n", precio-descuento)
 
-	//precio -= precio * descuento
 }
 
 func ejercicioC() {
