@@ -44,8 +44,8 @@ Detectar cuáles de estas variables que declaró el alumno son correctas.*/
 // desarrollador experimentado que pueda:
 // Verificar su código y realizar las correcciones necesarias.
 
-//   var apellido string = "Gomez" --> bien
-//   var edad int = "35" --> mal
-//   boolean := "false"; --> mal
-//   var sueldo string = 45857.90 --> mal
-//   var nombre string = "Julián" --> bien
+//   var apellido string = "Gomez" --> true
+//   var edad int = "35" --> es una string no un int
+//   boolean := "false"; --> es una string no un boolean
+//   var sueldo string = 45857.90 --> es un float64 no una string
+//   var nombre string = "Julián" --> true
