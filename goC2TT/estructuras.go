@@ -60,9 +60,14 @@ func (m *Matriz) setMatriz(v [9]float64) {
 
 func (m Matriz) print() {
 
-	fmt.Println(m.valoresMatriz[0], m.valoresMatriz[1], m.valoresMatriz[2])
-	fmt.Println(m.valoresMatriz[3], m.valoresMatriz[4], m.valoresMatriz[5])
-	fmt.Println(m.valoresMatriz[6], m.valoresMatriz[7], m.valoresMatriz[8])
+	for i, _ := range m.valoresMatriz {
+
+		if i == 2 || i == 5 {
+			fmt.Println(m.valoresMatriz[i])
+		} else {
+			fmt.Print(m.valoresMatriz[i])
+		}
+	}
 }
 
 func ejercicio3() {
