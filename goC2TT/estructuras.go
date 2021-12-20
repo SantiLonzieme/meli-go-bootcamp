@@ -60,7 +60,7 @@ func (m *Matriz) setMatriz(v [9]float64) {
 
 func (m Matriz) print() {
 
-	for i, _ := range m.valoresMatriz {
+	for i := range m.valoresMatriz {
 
 		if i == 2 || i == 5 {
 			fmt.Println(m.valoresMatriz[i])
