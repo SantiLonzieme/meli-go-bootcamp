@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/SantiLonzieme/GoWeb/cmd/server/handler"
-	"github.com/SantiLonzieme/GoWeb/internal/usuarios"
+	"github.com/SantiLonzieme/meli-go-bootcamp/GoWeb/internal/usuarios"
+	"github.com/SantiLonzieme/meli-go-bootcamp/Goweb/cmd/server/handler"
 	"github.com/gin-gonic/gin"
 )
 
