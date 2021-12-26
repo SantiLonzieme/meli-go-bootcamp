@@ -22,7 +22,9 @@ func main() {
 	// ordeSeleccion := <-ordSeleccion(variable3)
 
 	// fmt.Println("Burbuja\n", ordeBurbuja, "\n", "Inserción\n", ordeInsercion, "\n", "Seleccion\n", ordeSeleccion)
-
+	start := time.Now()
+	tiempo := time.Since(start)
+	fmt.Println(tiempo, "/////")
 }
 
 func ordInser(arr []int) <-chan []int {
