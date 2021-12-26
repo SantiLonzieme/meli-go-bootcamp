@@ -1,7 +1,7 @@
-package main
+package handler
 
 import (
-	"github.com/SantiLonzieme/GoWeb/internal/usuarios"
+	"github.com/SantiLonzieme/meli-go-bootcamp/GoWeb/internal/usuarios"
 	"github.com/gin-gonic/gin"
 )
 
