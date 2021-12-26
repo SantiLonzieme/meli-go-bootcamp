@@ -20,6 +20,12 @@ func main() {
 func ejercicioD() {
 
 	maxFunc, err := tipoDeOperacion(minimo)
+
+	if err != nil {
+		fmt.Println("El tipo de operación no existe")
+		return
+	}
+
 	valorMax := maxFunc(5, 3, 6, 7, 10)
 
 	fmt.Println(valorMax, err)
@@ -168,13 +174,18 @@ func tipoDeOperacion(operador string) (func(calificaciones ...int) (calificacion
 		return prom, nil
 	default:
 		return nil, errors.New("No existe ese calculo")
-		//si le paso nil rompe al correr el error
 	}
 }
 
 func ejercicioE() {
 
 	funcAnimal, err := tipoDeAlimento("elefante")
+
+	if err != nil {
+		fmt.Println("El animal no existe")
+		return
+	}
+
 	cantidadDeAlimento := funcAnimal(6)
 
 	fmt.Println(cantidadDeAlimento, err)
@@ -194,7 +205,7 @@ func tipoDeAlimento(operador string) (func(animales int) (alimentoKg int), error
 		return tarantulaFunc, nil
 	default:
 		return nil, errors.New("\nNo existe el animal")
-		//si pongo nil en el lugar de la función rompe al correr el error
+
 	}
 }
 

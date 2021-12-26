@@ -116,4 +116,5 @@ func ejercicioF() {
 	delete(employees, "Pedro")
 
 	fmt.Println(employees, "Sin Pedro")
+
 }

@@ -75,12 +75,12 @@ func ejercicio3() {
 	producto1 := producto{"Bicicleta", 10000, "Grande"}
 	producto2 := producto{"Zapatillas", 1500, "Mediano"}
 	producto3 := producto{"Cuaderno", 100, "Pequeño"}
-	nuevaTienda := tienda{}
+	nuevaTienda := nuevaTienda()
 	nuevaTienda.Agregar(producto1)
 	nuevaTienda.Agregar(producto2)
 	nuevaTienda.Agregar(producto3)
 
-	fmt.Println(nuevaTienda.lista)
+	fmt.Println(nuevaTienda)
 	nuevaTienda.Total()
 
 }
@@ -96,22 +96,26 @@ type producto struct {
 }
 
 type Producto interface {
-	CalcularCosto()
+	CalcularCosto(p producto) (costoAdi float64)
 }
 
 type Ecommerce interface {
-	Total()
-	Agregar()
+	Total() (precioFinal float64)
+	Agregar(producto producto) tienda
 }
 
-func (p *producto) nuevoProducto(tipo string, nombre string, precio float64) producto {
+func nuevoProducto(tipo string, nombre string, precio float64) Producto {
 
 	producto := producto{nombre, precio, tipo}
-
 	return producto
 }
 
-func CalcularCosto(p producto) (costoAdi float64) {
+func nuevaTienda() Ecommerce {
+	nuevaTienda := tienda{}
+	return &nuevaTienda
+}
+
+func (pro producto) CalcularCosto(p producto) (costoAdi float64) {
 
 	switch p.Tipo {
 	case "Pequeño":
@@ -131,7 +135,6 @@ func CalcularCosto(p producto) (costoAdi float64) {
 func (t *tienda) Agregar(producto producto) (NuevaTienda tienda) {
 
 	t.lista = append(t.lista, producto)
-
 	return *t
 
 }
@@ -139,7 +142,7 @@ func (t *tienda) Agregar(producto producto) (NuevaTienda tienda) {
 func (t *tienda) Total() (precioFinal float64) {
 
 	for _, producto := range t.lista {
-		precioFinal = precioFinal + CalcularCosto(producto) + producto.Precio
+		precioFinal = precioFinal + producto.CalcularCosto(producto) + producto.Precio
 	}
 
 	fmt.Println("El total a pagar de la lista es", precioFinal)

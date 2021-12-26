@@ -1,0 +1,33 @@
+ 
+[
+    {
+    "id" : 1,
+    "nombre" : "Pedro",
+    "apellido" : "Gonzalez",
+    "email" : "juan_perez@gmail.com",
+    "edad" : 30,
+    "altura" : 1.70,
+    "activo" : true,
+    "fechaDeCreacion" : "13/12/2021"  
+},
+{
+    "id" : 2,
+    "nombre" : "Juan",
+    "apellido" : "Gonzalez",
+    "email" : "juan_perez@gmail.com",
+    "edad" : 30,
+    "altura" : 1.70,
+    "activo" : true,
+    "fechaDeCreacion" : "13/12/2021"  
+},
+{
+    "id" : 2,
+    "nombre" : "German",
+    "apellido" : "Lopez",
+    "email" : "juan_perez@gmail.com",
+    "edad" : 30,
+    "altura" : 1.70,
+    "activo" : true,
+    "fechaDeCreacion" : "13/12/2021"  
+}
+]
