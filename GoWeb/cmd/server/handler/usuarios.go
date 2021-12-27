@@ -1,19 +1,19 @@
 package handler
 
 import (
-	"github.com/SantiLonzieme/meli-go-bootcamp/GoWeb/internal/usuarios"
+	"github.com/SantiLonzieme/goweb/internal/usuarios"
 	"github.com/gin-gonic/gin"
 )
 
 type request struct {
-	Id       int     `json:"id" `
-	Nombre   string  `json:"nombre" binding:"required"`
-	Apellido string  `json:"apellido" binding:"required"`
-	Email    string  `json:"email" binding:"required"`
-	Edad     int     `json:"edad" binding:"required"`
-	Altura   float64 `json:"altura"`
-	Activo   bool    `json:"activo"`
-	Fecha    string  `json:"fecha"`
+	Id       int    `json:"id" `
+	Nombre   string `json:"nombre" binding:"required"`
+	Apellido string `json:"apellido" binding:"required"`
+	Email    string `json:"email" binding:"required"`
+	Edad     int    `json:"edad" binding:"required"`
+	Altura   int    `json:"altura"`
+	Activo   bool   `json:"activo"`
+	Fecha    string `json:"fecha"`
 }
 
 type Usuario struct {
