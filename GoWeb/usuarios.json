@@ -1,33 +1,32 @@
- 
 [
-    {
-    "id" : 1,
-    "nombre" : "Pedro",
-    "apellido" : "Gonzalez",
-    "email" : "juan_perez@gmail.com",
-    "edad" : 30,
-    "altura" : 1.70,
-    "activo" : true,
-    "fechaDeCreacion" : "13/12/2021"  
-},
-{
-    "id" : 2,
-    "nombre" : "Juan",
-    "apellido" : "Gonzalez",
-    "email" : "juan_perez@gmail.com",
-    "edad" : 30,
-    "altura" : 1.70,
-    "activo" : true,
-    "fechaDeCreacion" : "13/12/2021"  
-},
-{
-    "id" : 2,
-    "nombre" : "German",
-    "apellido" : "Lopez",
-    "email" : "juan_perez@gmail.com",
-    "edad" : 30,
-    "altura" : 1.70,
-    "activo" : true,
-    "fechaDeCreacion" : "13/12/2021"  
-}
+  {
+    "id": 1,
+    "nombre": "santi",
+    "apellido": "apellido1",
+    "email": "santiœgmail.com",
+    "edad": 33,
+    "altura": 180,
+    "activo": true,
+    "fecha": "13/12/2021"
+  },
+  {
+    "id": 2,
+    "nombre": "santi22",
+    "apellido": "apellido1",
+    "email": "santiœgmail.com",
+    "edad": 33,
+    "altura": 180,
+    "activo": true,
+    "fecha": "13/12/2021"
+  },
+  {
+    "id": 3,
+    "nombre": "santi2112",
+    "apellido": "apellido1",
+    "email": "santiœgmail.com",
+    "edad": 33,
+    "altura": 180,
+    "activo": true,
+    "fecha": "13/12/2021"
+  }
 ]
