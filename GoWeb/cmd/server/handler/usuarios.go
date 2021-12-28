@@ -1,11 +1,11 @@
 package handler
 
 import (
-	"fmt"
 	"os"
 	"strconv"
 
 	"github.com/SantiLonzieme/goweb/internal/usuarios"
+	"github.com/SantiLonzieme/goweb/pkg/web"
 	"github.com/gin-gonic/gin"
 )
 
@@ -34,21 +34,17 @@ func (u *Usuario) GetAll() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
 		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, gin.H{
-				"error": "token inválido",
-			})
+			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 			return
 		}
 
 		p, err := u.service.GetAll()
 
 		if err != nil {
-			ctx.JSON(404, gin.H{
-				"error": err.Error(),
-			})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
-		ctx.JSON(200, p)
+		ctx.JSON(200, web.NewResponse(200, p, "Request exitoso"))
 	}
 }
 
@@ -57,17 +53,48 @@ func (u *Usuario) Store() gin.HandlerFunc {
 		token := ctx.Request.Header.Get("token")
 
 		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, gin.H{
-				"error": "token inválido",
-			})
+			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 			return
 		}
 		var req request
 
 		if err := ctx.Bind(&req); err != nil {
-			ctx.JSON(404, gin.H{
-				"error": err.Error(),
-			})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
+			return
+		}
+
+		if req.Nombre == "" {
+			ctx.JSON(400, web.NewResponse(400, nil, "El nombre del usuario es requerido"))
+			return
+		}
+
+		if req.Apellido == "" {
+			ctx.JSON(400, web.NewResponse(400, nil, "El Apellido del usuario es requerido"))
+			return
+		}
+
+		if req.Email == "" {
+			ctx.JSON(400, web.NewResponse(400, nil, "El Email del usuario es requerido"))
+			return
+		}
+
+		if req.Edad == 0 {
+			ctx.JSON(400, web.NewResponse(400, nil, "La edad del usuario es requerido"))
+			return
+		}
+
+		if req.Altura == 0 {
+			ctx.JSON(400, web.NewResponse(400, nil, "La altura del usuario es requerido"))
+			return
+		}
+
+		if !req.Activo {
+			ctx.JSON(400, web.NewResponse(400, nil, "La propiedad activo es requerida"))
+			return
+		}
+
+		if req.Fecha == "" {
+			ctx.JSON(400, web.NewResponse(400, nil, "La fecha del usuario es requerido"))
 			return
 		}
 
@@ -75,12 +102,10 @@ func (u *Usuario) Store() gin.HandlerFunc {
 			req.Edad, req.Altura, req.Activo, req.Fecha)
 
 		if err != nil {
-			ctx.JSON(404, gin.H{
-				"error": err.Error(),
-			})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
-		ctx.JSON(200, p)
+		ctx.JSON(200, web.NewResponse(200, p, "Request exitoso"))
 	}
 }
 
@@ -91,62 +116,56 @@ func (us *Usuario) Update() gin.HandlerFunc {
 		token := ctx.Request.Header.Get("token")
 
 		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, gin.H{
-				"error": "token inválido",
-			})
+			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 			return
 		}
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
 		if err != nil {
-			ctx.JSON(400, gin.H{
-				"error": "invalid ID",
-			})
+			ctx.JSON(401, web.NewResponse(401, nil, "id inválido"))
 			return
 		}
 
 		var req request
 
 		if err := ctx.Bind(&req); err != nil {
-			ctx.JSON(404, gin.H{
-				"error": err.Error(),
-			})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
 
 		if req.Nombre == "" {
-			ctx.JSON(400, gin.H{"error": "El nombre del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "El nombre del usuario es requerido"))
 			return
 		}
 
 		if req.Apellido == "" {
-			ctx.JSON(400, gin.H{"error": "El apellido del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "El Apellido del usuario es requerido"))
 			return
 		}
 
 		if req.Email == "" {
-			ctx.JSON(400, gin.H{"error": "El email del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "El Email del usuario es requerido"))
 			return
 		}
 
 		if req.Edad == 0 {
-			ctx.JSON(400, gin.H{"error": "La edad del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "La edad del usuario es requerido"))
 			return
 		}
 
 		if req.Altura == 0 {
-			ctx.JSON(400, gin.H{"error": "La altura del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "La altura del usuario es requerido"))
 			return
 		}
 
 		if !req.Activo {
-			ctx.JSON(400, gin.H{"error": "La propiedad activo es requerida"})
+			ctx.JSON(400, web.NewResponse(400, nil, "La propiedad activo es requerida"))
 			return
 		}
 
 		if req.Fecha == "" {
-			ctx.JSON(400, gin.H{"error": "La fecha del usuario es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "La fecha del usuario es requerido"))
 			return
 		}
 
@@ -154,10 +173,10 @@ func (us *Usuario) Update() gin.HandlerFunc {
 			req.Altura, req.Activo, req.Fecha)
 
 		if err != nil {
-			ctx.JSON(404, gin.H{"error": err.Error()})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
-		ctx.JSON(200, u)
+		ctx.JSON(200, web.NewResponse(200, u, "Request exitoso"))
 	}
 }
 
@@ -166,25 +185,25 @@ func (c *Usuario) Delete() gin.HandlerFunc {
 		token := ctx.Request.Header.Get("token")
 
 		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, gin.H{"error": "token inválido"})
+			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 			return
 		}
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
 		if err != nil {
-			ctx.JSON(400, gin.H{"error": "Id inválido"})
+			ctx.JSON(401, web.NewResponse(401, nil, "id inválido"))
 			return
 		}
 
 		err = c.service.Delete(int(id))
 
 		if err != nil {
-			ctx.JSON(404, gin.H{"error": err.Error()})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
 
-		ctx.JSON(200, gin.H{"data": fmt.Sprintf("El producto %d ha sido eliminado", id)})
+		ctx.JSON(200, web.NewResponse(200, id, "El usuario ha sido eliminado"))
 
 	}
 }
@@ -193,41 +212,41 @@ func (us *Usuario) UpdateApellidoEdad() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
 		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, gin.H{"error": "token inválido"})
+			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 			return
 		}
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
 		if err != nil {
-			ctx.JSON(400, gin.H{"error": "id inválido"})
+			ctx.JSON(401, web.NewResponse(401, nil, "id inválido"))
 			return
 		}
 
 		var req request
 
 		if err := ctx.Bind(&req); err != nil {
-			ctx.JSON(404, gin.H{"error": err.Error()})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
 
 		if req.Apellido == "" {
-			ctx.JSON(400, gin.H{"error": "El apellido es requerido"})
+			ctx.JSON(400, web.NewResponse(400, nil, "El Apellido del usuario es requerido"))
 			return
 		}
 
 		if req.Edad == 0 {
-			ctx.JSON(400, gin.H{"error": "La edad es requerida"})
+			ctx.JSON(400, web.NewResponse(400, nil, "La edad del usuario es requerido"))
 			return
 		}
 
 		u, err := us.service.UpdateApellidoEdad(int(id), req.Apellido, req.Edad)
 
 		if err != nil {
-			ctx.JSON(404, gin.H{"error": err.Error()})
+			ctx.JSON(404, web.NewResponse(404, nil, err.Error()))
 			return
 		}
 
-		ctx.JSON(200, u)
+		ctx.JSON(200, web.NewResponse(200, u, "Request exitoso"))
 	}
 }
