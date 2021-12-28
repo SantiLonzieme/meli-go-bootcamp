@@ -30,6 +30,15 @@ func NewUsuario(u usuarios.Service) *Usuario {
 	}
 }
 
+// Lista de Usuarios
+// @Summary Lista de Usuarios
+// @Tags Usuarios
+// @Description get usuarios
+// @Accept json
+// @Produce json
+// @Param token header string true "token"
+// @Success 200 {object} web.Response
+// @Router /usuarios [get]
 func (u *Usuario) GetAll() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		token := ctx.Request.Header.Get("token")
@@ -48,14 +57,24 @@ func (u *Usuario) GetAll() gin.HandlerFunc {
 	}
 }
 
+// Store Usuarios
+// @Summary Store usuarios
+// @Tags Usuarios
+// @Description store usuarios
+// @Accept json
+// @Produce json
+// @Param token header string true "token"
+// @Param usuario body request true "Usuario to store"
+// @Success 200 {object} web.Response
+// @Router /products [post]
 func (u *Usuario) Store() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		token := ctx.Request.Header.Get("token")
+		// token := ctx.Request.Header.Get("token")
 
-		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
-			return
-		}
+		// if token != os.Getenv("TOKEN") {
+		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
+		// 	return
+		// }
 		var req request
 
 		if err := ctx.Bind(&req); err != nil {
@@ -113,12 +132,12 @@ func (us *Usuario) Update() gin.HandlerFunc {
 
 	return func(ctx *gin.Context) {
 
-		token := ctx.Request.Header.Get("token")
+		// token := ctx.Request.Header.Get("token")
 
-		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
-			return
-		}
+		// if token != os.Getenv("TOKEN") {
+		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
+		// 	return
+		// }
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
@@ -182,12 +201,12 @@ func (us *Usuario) Update() gin.HandlerFunc {
 
 func (c *Usuario) Delete() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		token := ctx.Request.Header.Get("token")
+		// token := ctx.Request.Header.Get("token")
 
-		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
-			return
-		}
+		// if token != os.Getenv("TOKEN") {
+		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
+		// 	return
+		// }
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
@@ -210,11 +229,11 @@ func (c *Usuario) Delete() gin.HandlerFunc {
 
 func (us *Usuario) UpdateApellidoEdad() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		token := ctx.Request.Header.Get("token")
-		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
-			return
-		}
+		// token := ctx.Request.Header.Get("token")
+		// if token != os.Getenv("TOKEN") {
+		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
+		// 	return
+		// }
 
 		id, err := strconv.ParseInt(ctx.Param("id"), 10, 64)
 
