@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/SantiLonzieme/goweb/cmd/server/handler"
@@ -41,10 +40,14 @@ func newMiddleware(ctx *gin.Context) {
 
 	token := ctx.Request.Header.Get("token")
 
-	fmt.Println("El middleware funciona////////////", token)
+	if token == "" {
+		ctx.AbortWithStatusJSON(401, web.NewResponse(401, nil, "ingresar token"))
+
+	}
 
 	if token != os.Getenv("TOKEN") {
 		ctx.AbortWithStatusJSON(401, web.NewResponse(401, nil, "token inválido"))
+
 	}
 
 	ctx.Next()

@@ -1,15 +1,5 @@
 [
   {
-    "id": 1,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
     "id": 2,
     "nombre": "santilaaaa",
     "apellido": "apellido1sssssss",
@@ -51,56 +41,6 @@
   },
   {
     "id": 6,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 7,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 8,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 9,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 10,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 11,
     "nombre": "santilaaaa",
     "apellido": "apellido1sssssss",
     "email": "santiœgmail.com",
