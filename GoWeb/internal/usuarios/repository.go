@@ -127,11 +127,11 @@ func (r *repository) Delete(id int) error {
 	}
 
 	if !deleted {
-		return fmt.Errorf("Producto %d no encontrado", id)
+		return fmt.Errorf("producto %d no encontrado", id)
 	}
 
-	usuarios = append(usuarios[:index], usuarios[:index+1]...)
-
+	usuarios = append(usuarios[:index], usuarios[index+1:]...)
+	//:index desde ----- index: a partir de
 	if err := r.db.Write(usuarios); err != nil {
 		return err
 	}
@@ -141,6 +141,7 @@ func (r *repository) Delete(id int) error {
 }
 
 func (r *repository) UpdateApellidoEdad(id int, apellido string, edad int) (Usuario, error) {
+
 	var u Usuario
 
 	updated := false

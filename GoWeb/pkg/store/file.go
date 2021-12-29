@@ -34,7 +34,7 @@ func (fs *FileStore) Write(data interface{}) (err error) {
 	if err != nil {
 		return err
 	}
-	f, err := os.OpenFile(fs.FileName, os.O_CREATE|os.O_WRONLY, 0644)
+	f, err := os.OpenFile(fs.FileName, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		return err
 	}
