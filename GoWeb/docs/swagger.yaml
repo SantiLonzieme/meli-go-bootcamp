@@ -69,7 +69,7 @@ paths:
         name: token
         required: true
         type: string
-      - description: Product to store
+      - description: Usuario to store
         in: body
         name: usuario
         required: true
@@ -96,7 +96,7 @@ paths:
         name: token
         required: true
         type: string
-      - description: User ID to delete
+      - description: Usuario ID to delete
         in: query
         name: string
         required: true
@@ -121,7 +121,7 @@ paths:
         name: token
         required: true
         type: string
-      - description: User ID to update name and age
+      - description: Id de usuario
         in: query
         name: string
         required: true

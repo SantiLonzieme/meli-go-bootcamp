@@ -83,7 +83,7 @@ var doc = `{
                         "required": true
                     },
                     {
-                        "description": "Product to store",
+                        "description": "Usuario to store",
                         "name": "usuario",
                         "in": "body",
                         "required": true,
@@ -171,7 +171,7 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "description": "User ID to delete",
+                        "description": "Usuario ID to delete",
                         "name": "string",
                         "in": "query",
                         "required": true
@@ -208,7 +208,7 @@ var doc = `{
                     },
                     {
                         "type": "string",
-                        "description": "User ID to update name and age",
+                        "description": "Id de usuario",
                         "name": "string",
                         "in": "query",
                         "required": true
