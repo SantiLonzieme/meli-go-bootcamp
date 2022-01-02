@@ -63,7 +63,7 @@ func (u *Usuario) GetAll() gin.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Param token header string true "token"
-// @Param usuario body request true "Product to store"
+// @Param usuario body request true "Usuario to store"
 // @Success 200 {object} web.Response
 // @Router /usuarios [post]
 func (u *Usuario) Store() gin.HandlerFunc {
@@ -216,7 +216,7 @@ func (us *Usuario) Update() gin.HandlerFunc {
 // @Accept json
 // @Produce json
 // @Param token header string true "token"
-// @Param string query string true "User ID to delete"
+// @Param string query string true "Usuario ID to delete"
 // @Success 200 {object} web.Response
 // @Router /usuarios/{id} [delete]
 func (c *Usuario) Delete() gin.HandlerFunc {
