@@ -4,28 +4,40 @@ import (
 	"os"
 
 	"github.com/SantiLonzieme/goweb/cmd/server/handler"
+	"github.com/SantiLonzieme/goweb/docs"
 	"github.com/SantiLonzieme/goweb/internal/usuarios"
 	"github.com/SantiLonzieme/goweb/pkg/store"
-	"github.com/SantiLonzieme/goweb/pkg/web"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
-// @title Usuarios API
+// @title MELI Bootcamp API
 // @version 1.0
-// @description Esta Api maneja información de usuarios.
-// @contact.name soporte API
+// @description This API Handle MELI Products.
+// @termsOfService https://developers.mercadolibre.com.ar/es_ar/terminos-y-condiciones
+// @contact.name API Support
+// @contact.url https://developers.mercadolibre.com.ar/support
 // @license.name Apache 2.0
+// @license.url http://www.apache.org/licenses/LICENSE-2.0.html
 func main() {
+
 	_ = godotenv.Load()
+
 	db := store.New(store.FileType, "usuarios.json")
 	repo := usuarios.NewRepository(db)
 	service := usuarios.NewService(repo)
 	u := handler.NewUsuario(service)
 
 	router := gin.Default()
-	router.Use(newMiddleware)
+
 	us := router.Group("/usuarios")
+
+	router.GET("/docs/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	docs.SwaggerInfo.Host = os.Getenv("HOST")
+	us.Use(handler.NewMiddleware)
 	us.POST("/", u.Store())
 	us.GET("/", u.GetAll())
 	us.PUT("/:id", u.Update())
@@ -33,22 +45,4 @@ func main() {
 	us.PATCH("/:id", u.UpdateApellidoEdad())
 
 	router.Run()
-
-}
-
-func newMiddleware(ctx *gin.Context) {
-
-	token := ctx.Request.Header.Get("token")
-
-	if token == "" {
-		ctx.AbortWithStatusJSON(401, web.NewResponse(401, nil, "ingresar token"))
-
-	}
-
-	if token != os.Getenv("TOKEN") {
-		ctx.AbortWithStatusJSON(401, web.NewResponse(401, nil, "token inválido"))
-
-	}
-
-	ctx.Next()
 }

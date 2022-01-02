@@ -1,7 +1,6 @@
 package handler
 
 import (
-	"os"
 	"strconv"
 
 	"github.com/SantiLonzieme/goweb/internal/usuarios"
@@ -30,9 +29,9 @@ func NewUsuario(u usuarios.Service) *Usuario {
 	}
 }
 
-// Lista de Usuarios
-// @Summary Lista de Usuarios
-// @Tags Usuarios
+// ListProducts godoc
+// @Summary GetAll usuarios
+// @Tags Usuario
 // @Description get usuarios
 // @Accept json
 // @Produce json
@@ -41,11 +40,11 @@ func NewUsuario(u usuarios.Service) *Usuario {
 // @Router /usuarios [get]
 func (u *Usuario) GetAll() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		token := ctx.Request.Header.Get("token")
-		if token != os.Getenv("TOKEN") {
-			ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
-			return
-		}
+		// token := ctx.Request.Header.Get("token")
+		// if token != os.Getenv("TOKEN") {
+		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
+		// 	return
+		// }
 
 		p, err := u.service.GetAll()
 
@@ -57,20 +56,20 @@ func (u *Usuario) GetAll() gin.HandlerFunc {
 	}
 }
 
-// Store Usuarios
+// StoreProducts godoc
 // @Summary Store usuarios
-// @Tags Usuarios
+// @Tags Usuario
 // @Description store usuarios
 // @Accept json
 // @Produce json
 // @Param token header string true "token"
-// @Param usuario body request true "Usuario to store"
+// @Param usuario body request true "Product to store"
 // @Success 200 {object} web.Response
-// @Router /products [post]
+// @Router /usuarios [post]
 func (u *Usuario) Store() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
-		// token := ctx.Request.Header.Get("token")
 
+		// token := ctx.Request.Header.Get("token")
 		// if token != os.Getenv("TOKEN") {
 		// 	ctx.JSON(401, web.NewResponse(401, nil, "token inválido"))
 		// 	return
@@ -128,6 +127,17 @@ func (u *Usuario) Store() gin.HandlerFunc {
 	}
 }
 
+// UpdateUsers godoc
+// @Summary Update usuarios
+// @Tags Usuario
+// @Description Update usuario
+// @Accept json
+// @Produce json
+// @Param token header string true "token"
+// @Param user body request true "Usuario to update"
+// @Param string query string true "Usuario ID to Update"
+// @Success 200 {object} web.Response
+// @Router /usuarios/{id} [put]
 func (us *Usuario) Update() gin.HandlerFunc {
 
 	return func(ctx *gin.Context) {
@@ -199,6 +209,16 @@ func (us *Usuario) Update() gin.HandlerFunc {
 	}
 }
 
+// Delete godoc
+// @Summary Delete usuarios
+// @Tags Usuario
+// @Description delete usuario by id
+// @Accept json
+// @Produce json
+// @Param token header string true "token"
+// @Param string query string true "User ID to delete"
+// @Success 200 {object} web.Response
+// @Router /usuarios/{id} [delete]
 func (c *Usuario) Delete() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		// token := ctx.Request.Header.Get("token")
@@ -227,6 +247,16 @@ func (c *Usuario) Delete() gin.HandlerFunc {
 	}
 }
 
+// UpdateName godoc
+// @Summary UpdateApellidoEdad usuarios
+// @Tags Usuario
+// @Description update apellido y edad de un usuario
+// @Accept json
+// @Produce json
+// @Param token header string true "token"
+// @Param string query string true "Id de usuario"
+// @Success 200 {object} web.Response
+// @Router /usuarios/{id} [patch]
 func (us *Usuario) UpdateApellidoEdad() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		// token := ctx.Request.Header.Get("token")
