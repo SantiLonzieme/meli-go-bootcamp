@@ -44,5 +44,9 @@ func main() {
 	us.DELETE("/:id", u.Delete())
 	us.PATCH("/:id", u.UpdateApellidoEdad())
 
-	router.Run()
+	err := router.Run()
+
+	if err != nil {
+		return
+	}
 }
