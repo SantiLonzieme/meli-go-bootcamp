@@ -32,8 +32,6 @@ type repository struct {
 
 var usuarios []Usuario
 
-// var lastID int
-
 func NewRepository(db store.Store) Repository {
 	return &repository{
 		db: db,
@@ -42,7 +40,11 @@ func NewRepository(db store.Store) Repository {
 
 func (r *repository) GetAll() ([]Usuario, error) {
 	var usuarios []Usuario
-	r.db.Read(&usuarios)
+	err := r.db.Read(&usuarios)
+
+	if err != nil {
+		return []Usuario{}, err
+	}
 	return usuarios, nil
 }
 
@@ -63,7 +65,11 @@ func (r *repository) LastId() (int, error) {
 func (r *repository) Store(id int, nombre string, apellido string, email string, edad int, altura int, activo bool, fecha string) (Usuario, error) {
 
 	var usuarios []Usuario
-	r.db.Read(&usuarios)
+	err := r.db.Read(&usuarios)
+
+	if err != nil {
+		return Usuario{}, err
+	}
 
 	usuario := Usuario{id, nombre, apellido, email, edad, altura, activo, fecha}
 
@@ -91,7 +97,11 @@ func (r *repository) Update(id int, nombre string, apellido string, email string
 
 	updated := false
 
-	r.db.Read(&usuarios)
+	err := r.db.Read(&usuarios)
+
+	if err != nil {
+		return Usuario{}, err
+	}
 
 	for i := range usuarios {
 		if usuarios[i].Id == id {
@@ -117,7 +127,11 @@ func (r *repository) Delete(id int) error {
 
 	var index int
 
-	r.db.Read(&usuarios)
+	err := r.db.Read(&usuarios)
+
+	if err != nil {
+		return err
+	}
 
 	for i := range usuarios {
 		if usuarios[i].Id == id {
@@ -146,7 +160,11 @@ func (r *repository) UpdateApellidoEdad(id int, apellido string, edad int) (Usua
 
 	updated := false
 
-	r.db.Read(&usuarios)
+	err := r.db.Read(&usuarios)
+
+	if err != nil {
+		return Usuario{}, err
+	}
 
 	for i := range usuarios {
 		if usuarios[i].Id == id {

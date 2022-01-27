@@ -1,52 +1,22 @@
 [
   {
-    "id": 2,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan@gmail.com",
+    "edad": 40,
+    "altura": 178,
     "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 3,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
+    "fecha": "9/1/2022"
   },
   {
     "id": 4,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "email": "juan@gmail.com",
+    "edad": 40,
+    "altura": 178,
     "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 5,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
-  },
-  {
-    "id": 6,
-    "nombre": "santilaaaa",
-    "apellido": "apellido1sssssss",
-    "email": "santiœgmail.com",
-    "edad": 33,
-    "altura": 180,
-    "activo": true,
-    "fecha": "13/12/2021"
+    "fecha": "9/1/2022"
   }
 ]
