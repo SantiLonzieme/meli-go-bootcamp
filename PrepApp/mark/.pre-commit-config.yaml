@@ -1,0 +1,14 @@
+repos:
+  # Websec hook is MANDATORY, DO NOT comment it.
+  - repo: git@github.com-emu:melisource/fury_websec-git-hooks
+    rev: v1.1.0
+    hooks:
+      - id: pre_commit_hook
+        stages: [ commit ]
+      - id: post_commit_hook
+        stages: [ post-commit ]
+
+  - repo: https://github.com/melisource/fury_ktlint-pre-commit
+    rev: 1.1.0
+    hooks:
+      - id: ktlint
